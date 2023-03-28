@@ -2,6 +2,7 @@
 using AdoPet.Data.DTOs;
 using AdoPet.Models;
 using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AdoPet.Controllers;
@@ -64,6 +65,28 @@ public class TutoresController : ControllerBase
         if (tutor == null) return NotFound();
 
         _mapper.Map(tutorDto, tutor);
+        _context.SaveChanges();
+        return NoContent();
+
+    }
+
+    [HttpPatch("{id}")]
+    public IActionResult AtualizarTutorParial(int id, JsonPatchDocument<UpdateTutorDto> patch)
+    {
+        var tutor = _context.Tutores.FirstOrDefault(tutor => tutor.Id == id);
+
+        if (tutor == null) return NotFound();
+
+        var tutorParaAtualizar = _mapper.Map<UpdateTutorDto>(tutor);
+
+        patch.ApplyTo(tutorParaAtualizar, ModelState);
+
+        if (!TryValidateModel(tutorParaAtualizar))
+        {
+            return ValidationProblem(ModelState);
+        }
+
+        _mapper.Map(tutorParaAtualizar, tutor);
         _context.SaveChanges();
         return NoContent();
 
