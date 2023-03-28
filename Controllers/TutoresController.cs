@@ -55,4 +55,17 @@ public class TutoresController : ControllerBase
 
         return Ok(tutorDto);
     }
+
+    [HttpPut("{id}")]
+    public IActionResult AtualizarTutor(int id, [FromBody] UpdateTutorDto tutorDto)
+    {
+        var tutor = _context.Tutores.FirstOrDefault(tutor => tutor.Id == id);
+
+        if (tutor == null) return NotFound();
+
+        _mapper.Map(tutorDto, tutor);
+        _context.SaveChanges();
+        return NoContent();
+
+    }
 }
