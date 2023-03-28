@@ -24,7 +24,7 @@ public class TutoresController : ControllerBase
     /// <summary>
     /// Adiciona um tutor ao banco de dados
     /// </summary>
-    /// <param name="filmeDto">Objeto com os campos necessários para criação de um tutor</param>
+    /// <param name="TutorDto">Objeto com os campos necessários para criação de um tutor</param>
     /// <returns>IActionResult</returns>
     /// <response code="201">Caso inserção seja feita com sucesso</response>
     [HttpPost]
@@ -39,12 +39,24 @@ public class TutoresController : ControllerBase
         return CreatedAtAction(nameof(BuscarTutorPorId), new { id = tutor.Id }, tutor);
     }
 
+    /// <summary>
+    /// Retorna os tutores cadastrados
+    /// </summary>
+    /// <param name="skip">Valor para iniciar a lista</param>
+    /// <param name="take">Valor para trazer a quantidade de tutores</param>
+    /// <returns>IEnumerable</returns>
     [HttpGet]
     public IEnumerable<ReadTutorDto> BuscarTutores([FromQuery] int skip = 0, [FromQuery] int take = 50)
     {
         return _mapper.Map<List<ReadTutorDto>>(_context.Tutores.Skip(skip).Take(take));
     }
 
+    /// <summary>
+    /// Retorna um tutor cadastrado
+    /// </summary>
+    /// <param name="id">ID do tutor cadastrado no banco</param>
+    /// <returns>IActionResult</returns>
+    /// <response code="200">Caso a busca seja feita com sucesso</response>
     [HttpGet("{id}")]
     public IActionResult BuscarTutorPorId(int id) 
     {
@@ -57,6 +69,13 @@ public class TutoresController : ControllerBase
         return Ok(tutorDto);
     }
 
+    /// <summary>
+    /// Atualiza o cadastro completo do tutor selecionado
+    /// </summary>
+    /// <param name="id">ID do tutor cadastrado no banco</param>
+    /// <param name="tutorDto">Objeto com os campos necessários para alteração completa de um tutor</param>
+    /// <returns>IActionResult</returns>
+    /// <response code="200">Caso a alteração seja feita com sucesso</response>
     [HttpPut("{id}")]
     public IActionResult AtualizarTutor(int id, [FromBody] UpdateTutorDto tutorDto)
     {
@@ -69,7 +88,13 @@ public class TutoresController : ControllerBase
         return NoContent();
 
     }
-
+    /// <summary>
+    /// Atualiza o cadastro de um campo especifico do tutor selecionado
+    /// </summary>
+    /// <param name="id">ID do tutor cadastrado no banco</param>
+    /// <param name="patch">Objeto com os campos necessários para slteração especifica do dado de um tutor</param>
+    /// <returns>IActionResult</returns>
+    /// <response code="200">Caso a alteração seja feita com sucesso</response>
     [HttpPatch("{id}")]
     public IActionResult AtualizarTutorParial(int id, JsonPatchDocument<UpdateTutorDto> patch)
     {
@@ -91,7 +116,12 @@ public class TutoresController : ControllerBase
         return NoContent();
 
     }
-
+    /// <summary>
+    /// Deleta o cadastro de um tutor especifico
+    /// </summary>
+    /// <param name="id">ID do tutor cadastrado no banco</param>
+    /// <returns>IActionResult</returns>
+    /// <response code="200">Caso a alteração seja feita com sucesso</response>
     [HttpDelete("{id}")]
     public IActionResult DeletarTutor(int id)
     {
