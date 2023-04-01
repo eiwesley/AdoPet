@@ -7,14 +7,23 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AdoPet.Controllers;
 
+/// <summary>
+/// Classe Responsavel por controlar os requisitos da API
+/// </summary>
 [ApiController]
 [Route("[Controller]")]
+
 
 public class TutoresController : ControllerBase
 {
     private AdoPetContext _context;
     private IMapper _mapper;
 
+    /// <summary>
+    /// Metodo construtor
+    /// </summary>
+    /// <param name="context">retorna os dados da classe</param>
+    /// <param name="mapper">Mapeia os dados para os DTOs</param>
     public TutoresController(AdoPetContext context, IMapper mapper)
     {
         _context = context;
@@ -116,6 +125,8 @@ public class TutoresController : ControllerBase
         return NoContent();
 
     }
+
+
     ///// <summary>
     ///// Deleta o cadastro de um tutor especifico
     ///// </summary>

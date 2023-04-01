@@ -4,8 +4,14 @@ using AutoMapper;
 
 namespace AdoPet.Profiles;
 
+/// <summary>
+/// Classe de profile para tutor
+/// </summary>
 public class TutorProfile : Profile
 {
+    /// <summary>
+    /// Metodo construtor para mapeamento entre os DTOs e o cadastro de Tutor
+    /// </summary>
     public TutorProfile()
     {
         CreateMap<CreateTutorDto, Tutores>();

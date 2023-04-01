@@ -2,27 +2,51 @@
 
 namespace AdoPet.Models;
 
+/// <summary>
+/// Classe mãe, responsavel pelo mapeamento dos campos, para inserção ou consulta ao banco.
+/// </summary>
 public class Tutores
 {
+    /// <summary>
+    /// ID do tutor cadastrado no banco
+    /// </summary>
     [Key]
     [Required]
     public int Id { get; set; }
 
+    /// <summary>
+    /// Nome do Tutor
+    /// </summary>
     [Required(ErrorMessage = "O nome para cadastro é obrigatório!")]
     [MaxLength(50, ErrorMessage = "O tamanho do npme nao pode exceder 50 caracteres")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
+    /// <summary>
+    /// Email do Tutor
+    /// </summary>
     [Required(ErrorMessage = "O e-mail para cadastro é obrigatorio!")]
     [MaxLength(50, ErrorMessage = "O tamanho do e-mail nao pode exceder 50 caracteres")]
-    public string Email { get; set; }
+    public string? Email { get; set; }
 
+    /// <summary>
+    /// Senha de acesso do Tutor
+    /// </summary>
     [Required(ErrorMessage = "A senha para cadastro é obrigatoria!")]
     [MaxLength(20, ErrorMessage = "O tamanho da senha nao pode exceder 20 caracteres")]
-    public string Password { get; set; }
+    public string? Password { get; set; }
 
-    public string PetName { get; set; }
+    /// <summary>
+    /// Nome do Pet do tutoe
+    /// </summary>
+    public string? PetName { get; set; }
 
-    public string Image { get; set; }
+    /// <summary>
+    /// Imagem do tutor
+    /// </summary>
+    public string? Image { get; set; }
 
+    /// <summary>
+    /// Tutor ativo ou não.
+    /// </summary>
     public Boolean Active { get; set; }
 }
