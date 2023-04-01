@@ -5,9 +5,9 @@ using Microsoft.OpenApi.Models;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("TutoresConnection");
+var connectionString = builder.Configuration.GetConnectionString("AdopetApiConnection");
 
-builder.Services.AddDbContext<TutorContext>(opts => opts.UseSqlServer(connectionString));
+builder.Services.AddDbContext<AdoPetContext>(opts => opts.UseSqlServer(connectionString));
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 // Add services to the container.
@@ -17,7 +17,7 @@ builder.Services.AddControllers().AddNewtonsoftJson();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "FilmesAPI", Version = "v1" });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "AdoPetAPI", Version = "v1" });
     var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
     c.IncludeXmlComments(xmlPath);

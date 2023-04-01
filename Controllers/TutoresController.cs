@@ -12,10 +12,10 @@ namespace AdoPet.Controllers;
 
 public class TutoresController : ControllerBase
 {
-    private TutorContext _context;
+    private AdoPetContext _context;
     private IMapper _mapper;
 
-    public TutoresController(TutorContext context, IMapper mapper)
+    public TutoresController(AdoPetContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;
@@ -24,7 +24,7 @@ public class TutoresController : ControllerBase
     /// <summary>
     /// Adiciona um tutor ao banco de dados
     /// </summary>
-    /// <param name="TutorDto">Objeto com os campos necessários para criação de um tutor</param>
+    /// <param name="tutorDto">Objeto com os campos necessários para criação de um tutor</param>
     /// <returns>IActionResult</returns>
     /// <response code="201">Caso inserção seja feita com sucesso</response>
     [HttpPost]
@@ -75,7 +75,7 @@ public class TutoresController : ControllerBase
     /// <param name="id">ID do tutor cadastrado no banco</param>
     /// <param name="tutorDto">Objeto com os campos necessários para alteração completa de um tutor</param>
     /// <returns>IActionResult</returns>
-    /// <response code="200">Caso a alteração seja feita com sucesso</response>
+    /// <response code="204">Caso a alteração seja feita com sucesso</response>
     [HttpPut("{id}")]
     public IActionResult AtualizarTutor(int id, [FromBody] UpdateTutorDto tutorDto)
     {
@@ -94,7 +94,7 @@ public class TutoresController : ControllerBase
     /// <param name="id">ID do tutor cadastrado no banco</param>
     /// <param name="patch">Objeto com os campos necessários para slteração especifica do dado de um tutor</param>
     /// <returns>IActionResult</returns>
-    /// <response code="200">Caso a alteração seja feita com sucesso</response>
+    /// <response code="204">Caso a alteração seja feita com sucesso</response>
     [HttpPatch("{id}")]
     public IActionResult AtualizarTutorParial(int id, JsonPatchDocument<UpdateTutorDto> patch)
     {
@@ -116,22 +116,22 @@ public class TutoresController : ControllerBase
         return NoContent();
 
     }
-    /// <summary>
-    /// Deleta o cadastro de um tutor especifico
-    /// </summary>
-    /// <param name="id">ID do tutor cadastrado no banco</param>
-    /// <returns>IActionResult</returns>
-    /// <response code="200">Caso a alteração seja feita com sucesso</response>
-    [HttpDelete("{id}")]
-    public IActionResult DeletarTutor(int id)
-    {
-        var tutor = _context.Tutores.FirstOrDefault(tutor => tutor.Id == id);
+    ///// <summary>
+    ///// Deleta o cadastro de um tutor especifico
+    ///// </summary>
+    ///// <param name="id">ID do tutor cadastrado no banco</param>
+    ///// <returns>IActionResult</returns>
+    ///// <response code="200">Caso a alteração seja feita com sucesso</response>
+    //[HttpDelete("{id}")]
+    //public IActionResult DeletarTutor(int id)
+    //{
+    //    var tutor = _context.Tutores.FirstOrDefault(tutor => tutor.Id == id);
 
-        if (tutor == null) return NotFound();
+    //    if (tutor == null) return NotFound();
 
-        _context.Remove(tutor);
-        _context.SaveChanges();
-        return NoContent();
+    //    _context.Remove(tutor);
+    //    _context.SaveChanges();
+    //    return NoContent();
 
-    }
+    //}
 }
