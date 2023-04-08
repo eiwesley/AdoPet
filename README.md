@@ -34,12 +34,13 @@ Os times de frontend e UI já estão trabalhando no layout e nas telas. Para o b
 
 - [x] Armazenar no banco de dados as informações sobre os pets.
 - [x] Implementar para /pets POST/GET/GET_ID/PUT/PATCH.
+- [x] Validar se a url imagem do pet cadastrado é verdadeira.
 - [x] Implemente uma relação entre tutor e Pet, atribuindo para cada Pet um Tutor.
 - [x] Criar uma rota `GET` relacionando `tutores` e `pet`, exemplo: `GET pets/tutor/:id`. 
 - [x] Armazenar no banco de dados as informações sobre os abrigos.
 - [x] Implementar para /abrigos POST/GET/GET_ID/PUT/PATCH.
-- [x] Criar uma rota 'POST' para nova adoção
-- [x] criar uma rota 'DELETE' para adoção
+- [x] Criar uma rota 'POST' para nova adoção, caso todos os pets estejam preenchidos e validados.
+- [x] criar uma rota 'DELETE' para adoção, caso o nível do perfil seja Admin ou Abrigo.
 
 ## :soon: Semana 3 e 4
 
