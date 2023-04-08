@@ -83,6 +83,22 @@ public class PetsController : Controller
     }
 
     /// <summary>
+    /// Retorna um tutor cadastrado
+    /// </summary>
+    /// <param name="id">ID do Owner cadastrado para o Pet</param>
+    /// <returns>IActionResult</returns>
+    /// <response code="200">Caso a busca seja feita com sucesso</response>
+    /// <response code="404">Caso não exista o ID cadastrado</response>
+    [HttpGet("tutor/{id}")]
+    public IEnumerable<ReadPetDto> BuscarPetPorIdTutor(int id)
+    {
+        var tutor = _context.Tutores.FirstOrDefault(tutor => tutor.Id == id);
+        var tutorName = _mapper.Map<ReadTutorDto>(tutor).Name;
+
+        return _mapper.Map<List<ReadPetDto>>(_context.Pets.Where(t => t.Owner == tutorName));
+    }
+
+    /// <summary>
     /// Retorna um pet cadastrado através do nome
     /// </summary>
     /// <param name="name">Nome do Pet cadastrado no banco</param>
