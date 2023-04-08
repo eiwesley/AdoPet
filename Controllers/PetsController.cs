@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Models.Data;
 using Models.Models;
+using System.Linq;
 
 namespace AdoPet.Controllers;
 
@@ -55,7 +56,9 @@ public class PetsController : Controller
     [HttpGet]
     public IEnumerable<ReadPetDto> BuscarPets([FromQuery] int skip = 0, [FromQuery] int take = 50)
     {
-        return _mapper.Map<List<ReadPetDto>>(_context.Pets.Skip(skip).Take(take));
+        //return _mapper.Map<List<ReadPetDto>>(_context.Pets.Skip(skip).Take(take));
+
+        return _mapper.Map<List<ReadPetDto>>(_context.Pets.Where(status => status.Status != "Adopted").Skip(skip).Take(take));
     }
 
     /// <summary>
@@ -64,7 +67,7 @@ public class PetsController : Controller
     /// <param name="id">ID do Pet cadastrado no banco</param>
     /// <returns>IActionResult</returns>
     /// <response code="200">Caso a busca seja feita com sucesso</response>
-    /// /// <response code="404">Caso não exista o ID cadastrado</response>
+    /// <response code="404">Caso não exista o ID cadastrado</response>
     [HttpGet("{id}")]
     public IActionResult BuscarPetPorId(int id) 
     {
