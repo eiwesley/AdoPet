@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Data.DTOs.Abrigo;
 using Data.DTOs.Pet;
+using Data.DTOs.Tutor;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Models.Data;
@@ -124,6 +125,50 @@ public class AbrigoController : Controller
         }
 
         _mapper.Map(abrigoParaAtualizar, abrigo);
+        _context.SaveChanges();
+        return NoContent();
+
+    }
+
+    /// <summary>
+    /// Desabilita o cadastro do tutor selecionado
+    /// </summary>
+    /// <param name="id">ID do abrigo cadastrado no banco</param>
+    /// <returns>IActionResult</returns>
+    /// <response code="204">Caso a alteração seja feita com sucesso</response>
+    [HttpPatch("{id}/disable")]
+    public IActionResult DesabilitarAbrigo(int id)
+    {
+        var abrigo = _context.Abrigo.FirstOrDefault(abrigo => abrigo.Id == id);
+
+        if (abrigo == null) return NotFound();
+
+        var abrigoParaDesabilitar = _mapper.Map<UpdateAbrigoDto>(abrigo);
+        abrigoParaDesabilitar.Active = false;
+
+        _mapper.Map(abrigoParaDesabilitar, abrigo);
+        _context.SaveChanges();
+        return NoContent();
+
+    }
+
+    /// <summary>
+    /// Desabilita o cadastro do tutor selecionado
+    /// </summary>
+    /// <param name="id">ID do abrigo cadastrado no banco</param>
+    /// <returns>IActionResult</returns>
+    /// <response code="204">Caso a alteração seja feita com sucesso</response>
+    [HttpPatch("{id}/enable")]
+    public IActionResult HabilitarAbrigo(int id)
+    {
+        var abrigo = _context.Abrigo.FirstOrDefault(abrigo => abrigo.Id == id);
+
+        if (abrigo == null) return NotFound();
+
+        var abrigoParaHabilitar = _mapper.Map<UpdateAbrigoDto>(abrigo);
+        abrigoParaHabilitar.Active = true;
+
+        _mapper.Map(abrigoParaHabilitar, abrigo);
         _context.SaveChanges();
         return NoContent();
 
