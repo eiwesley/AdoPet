@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace AdoPet.Data.DTOs;
+namespace Data.DTOs.Tutor;
 
 /// <summary>
-/// Classe Responsabel pela criação do cadastro
+/// Classe Responsabel por retornar os dados para atualização
 /// </summary>
-public class CreateTutorDto
+public class UpdateTutorDto
 {
     /// <summary>
     /// Nome do Tutor
@@ -42,5 +42,12 @@ public class CreateTutorDto
     /// <summary>
     /// Tutor ativo ou não.
     /// </summary>
-    public Boolean Active { get; set; } = true;
+    public bool Active { get; set; }
+
+    /// <summary>
+    /// Tipo de Perfil - Adm, Tutor, etc....
+    /// </summary>
+    [Required(ErrorMessage = "O tipo de perfil para cadastro é obrigatorio!")]
+    [MaxLength(20, ErrorMessage = "O tamanho do perfil nao pode exceder 20 caracteres")]
+    public string? Profile { get; set; }
 }

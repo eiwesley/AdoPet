@@ -1,0 +1,44 @@
+Tutor:
+Name
+Email
+Password
+PetName
+ProfilePicture
+Role
+
+Listar Todos: GET /user
+Listar por ID: GET /user/{id}
+Listar por email: GET /user/email/{email}
+Buscar por atributos: GET /user/search&[atributos da busca]
+Criar POST /user {id e atributos do usuarios}
+Atualizar POST /user {id e atributos do usuarios}
+Desabilitar POST /user/{id}/disable
+Habilitar POST /user/{id}/disable
+
+
+Pets:
+Name
+Sex
+Age
+Breed
+Personality
+City
+State
+ProfilePic
+Species (Dog, Cat)
+Size (Mini, Small, Medium, Large, Giant)
+Status (New, Available, Adopted, Quarantane, Removed, Suspended)
+Owner
+AdpotedDate
+
+
+Listar Todos: GET /pet
+Listar por ID: GET /pet/{id}
+Listar por email: GET /pet/name/{name}
+Buscar por atributos: GET /pet/search&[atributos da busca]
+Criar POST /user {id e atributos do usuarios}
+Atualizar POST /pet {id e atributos do usuarios}
+Troca de status POST /pet/{name}/approve
+
+Abrigos:
+

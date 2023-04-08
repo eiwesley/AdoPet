@@ -1,8 +1,8 @@
-﻿using AdoPet.Models;
+﻿using Models.Models;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.EntityFrameworkCore;
 
-namespace AdoPet.Data;
+namespace Models.Data;
 
 /// <summary>
 /// Contexto para conexão com o banco de dados.
@@ -31,5 +31,11 @@ public class AdoPetContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
     }
+
+    /// <summary>
+    /// Conecta ao banco de dados Pets
+    /// </summary>
+    public DbSet<Pets> Pets { get; set; }
+
 }
 
