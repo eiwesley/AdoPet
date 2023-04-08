@@ -43,4 +43,37 @@ public class PetsController : Controller
 
         return Ok();
     }
+
+    /// <summary>
+    /// Retorna os tutores cadastrados
+    /// </summary>
+    /// <param name="skip">Valor para iniciar a lista</param>
+    /// <param name="take">Valor para trazer a quantidade de tutores</param>
+    /// <returns>IEnumerable</returns>
+    [HttpGet]
+    public IEnumerable<ReadPetDto> BuscarPets([FromQuery] int skip = 0, [FromQuery] int take = 50)
+    {
+        return _mapper.Map<List<ReadPetDto>>(_context.Pets.Skip(skip).Take(take));
+    }
+
+    /// <summary>
+    /// Retorna um tutor cadastrado
+    /// </summary>
+    /// <param name="id">ID do Pet cadastrado no banco</param>
+    /// <returns>IActionResult</returns>
+    /// <response code="200">Caso a busca seja feita com sucesso</response>
+    /// /// <response code="404">Caso não exista o ID cadastrado</response>
+    [HttpGet("{id}")]
+    public IActionResult BuscarPetPorId(int id) 
+    {
+        var pet = _context.Pets.FirstOrDefault(pet => pet.Id == id);
+        if (pet == null)
+        {
+            return NotFound();
+        }
+
+        var petDto = _mapper.Map<ReadPetDto>(pet);
+
+        return Ok(petDto);
+    }
 }
