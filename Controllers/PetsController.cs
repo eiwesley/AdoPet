@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Data.DTOs.Pet;
+using Data.DTOs.Tutor;
 using Microsoft.AspNetCore.Mvc;
 using Models.Data;
 using Models.Models;
@@ -75,5 +76,25 @@ public class PetsController : Controller
         var petDto = _mapper.Map<ReadPetDto>(pet);
 
         return Ok(petDto);
+    }
+
+    /// <summary>
+    /// Atualiza o cadastro completo do tutor selecionado
+    /// </summary>
+    /// <param name="id">ID do tutor cadastrado no banco</param>
+    /// <param name="petDto">Objeto com os campos necessários para alteração completa de um tutor</param>
+    /// <returns>IActionResult</returns>
+    /// <response code="200">Caso a alteração seja feita com sucesso</response>
+    [HttpPut("{id}")]
+    public IActionResult AtualizarPet(int id, [FromBody] UpdatePetDto petDto)
+    {
+        var pet = _context.Pets.FirstOrDefault(pet => pet.Id == id);
+
+        if (pet == null) return NotFound();
+
+        _mapper.Map(petDto, pet);
+        _context.SaveChanges();
+        return NoContent();
+
     }
 }
