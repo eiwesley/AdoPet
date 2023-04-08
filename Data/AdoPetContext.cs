@@ -1,6 +1,7 @@
 ﻿using Models.Models;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.EntityFrameworkCore;
+using AdoPet.Models;
 
 namespace Models.Data;
 
@@ -41,6 +42,11 @@ public class AdoPetContext : DbContext
     /// Conecta ao banco de dados Abrigo
     /// </summary>
     public DbSet<Abrigo> Abrigo { get; set; }
+
+    /// <summary>
+    /// Conecta ao banco de dados Adocao
+    /// </summary>
+    public DbSet<Adocao> Adocao { get; set; }
 
 }
 
