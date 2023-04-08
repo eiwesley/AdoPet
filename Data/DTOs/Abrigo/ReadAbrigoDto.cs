@@ -50,4 +50,9 @@ public class ReadAbrigoDto
     /// </summary>
     public bool? Active { get; set; }
 
+    /// <summary>
+    /// Hora da Consulta
+    /// </summary>
+    public DateTime HoraDaConsulta { get; set; } = DateTime.Now;
+
 }

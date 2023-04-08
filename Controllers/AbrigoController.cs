@@ -79,5 +79,25 @@ public class AbrigoController : Controller
     }
 
 
+    /// <summary>
+    /// Atualiza o cadastro completo do tutor selecionado
+    /// </summary>
+    /// <param name="id">ID do abrigo cadastrado no banco</param>
+    /// <param name="abrigoDto">Objeto com os campos necessários para alteração completa de um tutor</param>
+    /// <returns>IActionResult</returns>
+    /// <response code="204">Caso a alteração seja feita com sucesso</response>
+    [HttpPut("{id}")]
+    public IActionResult AtualizarAbrigo(int id, [FromBody] UpdateAbrigoDto abrigoDto)
+    {
+        var abrigo = _context.Abrigo.FirstOrDefault(abrigo => abrigo.Id == id);
+
+        if (abrigo == null) return NotFound();
+
+        _mapper.Map(abrigoDto, abrigo);
+        _context.SaveChanges();
+        return NoContent();
+
+    }
+
 }
 
