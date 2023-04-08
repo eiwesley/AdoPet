@@ -73,26 +73,41 @@ public class AdocaoController : Controller
     /// <returns>IActionResult</returns>
     /// <response code="204">Caso a alteração seja feita com sucesso</response>
     [HttpDelete("{id}")]
-    public IActionResult DeletarAdocao(int id)
+    public IActionResult DeletarAdocao(int id, [FromQuery] int idTutor = 0)
     {
-        var adocao = _context.Adocao.FirstOrDefault(adocao => adocao.Id == id);
 
-        if (adocao == null) return NotFound();
+        // retorna o nome do Tutor cadastrado, de acordo com o ID informado
+        var tutor = _context.Tutores.FirstOrDefault(tutor => tutor.Id == idTutor);
+        if (tutor == null) return NotFound();
+        var tutorProfile = _mapper.Map<ReadTutorDto>(tutor).Profile;
+        if ((tutorProfile == "Admin") || (tutorProfile == "Abrigo"))
+        {
+            var adocao = _context.Adocao.FirstOrDefault(adocao => adocao.Id == id);
 
-        _context.Remove(adocao);
-        _context.SaveChanges();
+            if (adocao == null) return NotFound();
 
-        var pet = _context.Pets.FirstOrDefault(pet => pet.Id == adocao.Pet);
-        if (pet == null) return NotFound();
-        var petParaAdotar = _mapper.Map<UpdatePetDto>(pet);
-        petParaAdotar.Status = "Suspended";
-        petParaAdotar.Owner = null;
-        petParaAdotar.AdoptedDate = null;
+            _context.Remove(adocao);
+            _context.SaveChanges();
 
-        _mapper.Map(petParaAdotar, pet);
-        _context.SaveChanges();
+            var pet = _context.Pets.FirstOrDefault(pet => pet.Id == adocao.Pet);
+            if (pet == null) return NotFound();
+            var petParaAdotar = _mapper.Map<UpdatePetDto>(pet);
+            petParaAdotar.Status = "Suspended";
+            petParaAdotar.Owner = null;
+            petParaAdotar.AdoptedDate = null;
 
-        return NoContent();
+            _mapper.Map(petParaAdotar, pet);
+            _context.SaveChanges();
+
+            return NoContent();
+        }
+        else
+        {
+            return BadRequest();
+        }
+            
+
+
 
     }
 
