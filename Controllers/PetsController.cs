@@ -40,6 +40,12 @@ public class PetsController : Controller
     [HttpPost]
     public IActionResult CadastrarPet([FromBody] CreatePetDto petDto)
     {
+        if (!Uri.TryCreate(petDto.ProfilePic, UriKind.Absolute, out Uri uriResult) || !(uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps))
+
+        {
+            return BadRequest("A URL fornecida é inválida.");
+        }
+
         Pets pet = _mapper.Map<Pets>(petDto);
         _context.Pets.Add(pet);
         _context.SaveChanges();
