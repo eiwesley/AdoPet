@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Models.Data;
 
@@ -11,9 +12,11 @@ using Models.Data;
 namespace AdoPetApi.Migrations
 {
     [DbContext(typeof(AdoPetContext))]
-    partial class AdoPetContextModelSnapshot : ModelSnapshot
+    [Migration("20230408155631_AlteracaoColunasPet")]
+    partial class AlteracaoColunasPet
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

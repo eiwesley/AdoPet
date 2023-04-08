@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace AdoPet.Data.DTOs;
+namespace Data.DTOs.Tutor;
 
 /// <summary>
 /// Classe Responsabel por retornar os dados consultados
@@ -35,7 +35,12 @@ public class ReadTutorDto
     /// <summary>
     /// Tutor ativo ou não.
     /// </summary>
-    public Boolean Active { get; set; }
+    public bool Active { get; set; }
+
+    /// <summary>
+    /// Tipo de Perfil - Adm, Tutor, etc....
+    /// </summary>
+    public string? Profile { get; set; }
 
     /// <summary>
     /// Hora da Consulta

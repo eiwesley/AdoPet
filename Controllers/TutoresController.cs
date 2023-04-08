@@ -1,11 +1,11 @@
-﻿using AdoPet.Data;
-using AdoPet.Data.DTOs;
-using AdoPet.Models;
+﻿using Models.Data;
+using Models.Models;
 using AutoMapper;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Data.DTOs.Tutor;
 
-namespace AdoPet.Controllers;
+namespace Models.Controllers;
 
 /// <summary>
 /// Classe Responsavel por controlar os requisitos da API

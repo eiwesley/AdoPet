@@ -1,8 +1,8 @@
-﻿using AdoPet.Data.DTOs;
-using AdoPet.Models;
+﻿using Models.Models;
 using AutoMapper;
+using Data.DTOs.Tutor;
 
-namespace AdoPet.Profiles;
+namespace Models.Profiles;
 
 /// <summary>
 /// Classe de profile para tutor

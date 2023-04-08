@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace AdoPet.Models;
+namespace Models.Models;
 
 /// <summary>
 /// Classe mãe, responsavel pelo mapeamento dos campos, para inserção ou consulta ao banco.
@@ -49,4 +49,11 @@ public class Tutores
     /// Tutor ativo ou não.
     /// </summary>
     public Boolean Active { get; set; }
+
+    /// <summary>
+    /// Tipo de Perfil - Adm, Tutor, etc....
+    /// </summary>
+    [Required(ErrorMessage = "O tipo de perfil para cadastro é obrigatorio!")]
+    [MaxLength(20, ErrorMessage = "O tamanho do perfil nao pode exceder 20 caracteres")]
+    public string? Profile { get; set; }
 }
