@@ -86,7 +86,7 @@ public class PetsController : Controller
     /// <returns>IActionResult</returns>
     /// <response code="200">Caso a busca seja feita com sucesso</response>
     [HttpGet("name/{name}")]
-    public IActionResult BuscarTutorPorEmail(string name)
+    public IActionResult BuscarPetPorNome(string name)
     {
         var pet = _context.Pets.FirstOrDefault(pet => pet.Name == name);
 
@@ -96,6 +96,29 @@ public class PetsController : Controller
 
         return Ok(petDto);
     }
+
+    /// <summary>
+    /// Aprova o cadastro do pet selecionado
+    /// </summary>
+    /// <param name="id">ID do pet cadastrado no banco</param>
+    /// <returns>IActionResult</returns>
+    /// <response code="204">Caso a alteração seja feita com sucesso</response>
+    [HttpPatch("{id}/approve")]
+    public IActionResult AprovarPet(int id)
+    {
+        var pet = _context.Pets.FirstOrDefault(pet => pet.Id == id);
+
+        if (pet == null) return NotFound();
+
+        var petParaAprovar = _mapper.Map<UpdatePetDto>(pet);
+        petParaAprovar.Status = "Avaiable";
+
+        _mapper.Map(petParaAprovar, pet);
+        _context.SaveChanges();
+        return NoContent();
+
+    }
+
 
     /// <summary>
     /// Atualiza o cadastro completo do tutor selecionado
