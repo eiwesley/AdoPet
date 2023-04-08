@@ -80,6 +80,24 @@ public class PetsController : Controller
     }
 
     /// <summary>
+    /// Retorna um pet cadastrado através do nome
+    /// </summary>
+    /// <param name="name">Nome do Pet cadastrado no banco</param>
+    /// <returns>IActionResult</returns>
+    /// <response code="200">Caso a busca seja feita com sucesso</response>
+    [HttpGet("name/{name}")]
+    public IActionResult BuscarTutorPorEmail(string name)
+    {
+        var pet = _context.Pets.FirstOrDefault(pet => pet.Name == name);
+
+        if (pet == null) return NotFound();
+
+        var petDto = _mapper.Map<ReadPetDto>(pet);
+
+        return Ok(petDto);
+    }
+
+    /// <summary>
     /// Atualiza o cadastro completo do tutor selecionado
     /// </summary>
     /// <param name="id">ID do tutor cadastrado no banco</param>
