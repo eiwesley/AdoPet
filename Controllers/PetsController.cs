@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Data.DTOs.Pet;
 using Data.DTOs.Tutor;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Models.Data;
 using Models.Models;
@@ -42,7 +43,7 @@ public class PetsController : Controller
         _context.Pets.Add(pet);
         _context.SaveChanges();
 
-        return Ok();
+        return CreatedAtAction(nameof(BuscarPetPorId),new {id = pet.Id}, pet);
     }
 
     /// <summary>
@@ -93,6 +94,35 @@ public class PetsController : Controller
         if (pet == null) return NotFound();
 
         _mapper.Map(petDto, pet);
+        _context.SaveChanges();
+        return NoContent();
+
+    }
+
+    /// <summary>
+    /// Atualiza o cadastro de um campo especifico do tutor selecionado
+    /// </summary>
+    /// <param name="id">ID do tutor cadastrado no banco</param>
+    /// <param name="patch">Objeto com os campos necessários para slteração especifica do dado de um tutor</param>
+    /// <returns>IActionResult</returns>
+    /// <response code="200">Caso a alteração seja feita com sucesso</response>
+    [HttpPatch("{id}")]
+    public IActionResult AtualizarPetParial(int id, JsonPatchDocument<UpdatePetDto> patch)
+    {
+        var pet = _context.Pets.FirstOrDefault(pet => pet.Id == id);
+
+        if (pet == null) return NotFound();
+
+        var petParaAtualizar = _mapper.Map<UpdatePetDto>(pet);
+
+        patch.ApplyTo(petParaAtualizar, ModelState);
+
+        if (!TryValidateModel(petParaAtualizar))
+        {
+            return ValidationProblem(ModelState);
+        }
+
+        _mapper.Map(petParaAtualizar, pet);
         _context.SaveChanges();
         return NoContent();
 
