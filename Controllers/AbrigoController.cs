@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Data.DTOs.Abrigo;
 using Data.DTOs.Pet;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Models.Data;
 using Models.Models;
@@ -99,5 +100,33 @@ public class AbrigoController : Controller
 
     }
 
+    /// <summary>
+    /// Atualiza o cadastro de um campo especifico do tutor selecionado
+    /// </summary>
+    /// <param name="id">ID do tutor cadastrado no banco</param>
+    /// <param name="patch">Objeto com os campos necessários para slteração especifica do dado de um tutor</param>
+    /// <returns>IActionResult</returns>
+    /// <response code="200">Caso a alteração seja feita com sucesso</response>
+    [HttpPatch("{id}")]
+    public IActionResult AtualizarAbrigoParial(int id, JsonPatchDocument<UpdateAbrigoDto> patch)
+    {
+        var abrigo = _context.Abrigo.FirstOrDefault(abrigo => abrigo.Id == id);
+
+        if (abrigo == null) return NotFound();
+
+        var abrigoParaAtualizar = _mapper.Map<UpdateAbrigoDto>(abrigo);
+
+        patch.ApplyTo(abrigoParaAtualizar, ModelState);
+
+        if (!TryValidateModel(abrigoParaAtualizar))
+        {
+            return ValidationProblem(ModelState);
+        }
+
+        _mapper.Map(abrigoParaAtualizar, abrigo);
+        _context.SaveChanges();
+        return NoContent();
+
+    }
 }
 
