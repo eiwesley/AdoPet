@@ -79,9 +79,9 @@ public class TutoresController : ControllerBase
     }
 
     /// <summary>
-    /// Retorna um tutor cadastrado
+    /// Retorna um tutor cadastrado através do E-mail
     /// </summary>
-    /// <param name="id">ID do tutor cadastrado no banco</param>
+    /// <param name="email">ID do tutor cadastrado no banco</param>
     /// <returns>IActionResult</returns>
     /// <response code="200">Caso a busca seja feita com sucesso</response>
     [HttpGet("email/{email}")]
@@ -94,6 +94,50 @@ public class TutoresController : ControllerBase
         var tutorDto = _mapper.Map<ReadTutorDto>(tutor);
 
         return Ok(tutorDto);
+    }
+
+    /// <summary>
+    /// Desabilita o cadastro do tutor selecionado
+    /// </summary>
+    /// <param name="id">ID do tutor cadastrado no banco</param>
+    /// <returns>IActionResult</returns>
+    /// <response code="204">Caso a alteração seja feita com sucesso</response>
+    [HttpPatch("{id}/disable")]
+    public IActionResult DesabilitarTutor(int id)
+    {
+        var tutor = _context.Tutores.FirstOrDefault(tutor => tutor.Id == id);
+
+        if (tutor == null) return NotFound();
+
+        var tutorParaAtualizar = _mapper.Map<UpdateTutorDto>(tutor);
+        tutorParaAtualizar.Active = false;
+
+        _mapper.Map(tutorParaAtualizar, tutor);
+        _context.SaveChanges();
+        return NoContent();
+
+    }
+
+    /// <summary>
+    /// Habilita o cadastro do tutor selecionado
+    /// </summary>
+    /// <param name="id">ID do tutor cadastrado no banco</param>
+    /// <returns>IActionResult</returns>
+    /// <response code="204">Caso a alteração seja feita com sucesso</response>
+    [HttpPatch("{id}/enable")]
+    public IActionResult HabilitarTutor(int id)
+    {
+        var tutor = _context.Tutores.FirstOrDefault(tutor => tutor.Id == id);
+
+        if (tutor == null) return NotFound();
+
+        var tutorParaAtualizar = _mapper.Map<UpdateTutorDto>(tutor);
+        tutorParaAtualizar.Active = true;
+
+        _mapper.Map(tutorParaAtualizar, tutor);
+        _context.SaveChanges();
+        return NoContent();
+
     }
 
     /// <summary>
