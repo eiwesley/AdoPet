@@ -63,4 +63,37 @@ public class AdocaoController : Controller
         return Ok(pet);
 
     }
+
+
+
+    /// <summary>
+    /// Deleta o cadastro de um tutor especifico
+    /// </summary>
+    /// <param name="id">ID do tutor cadastrado no banco</param>
+    /// <returns>IActionResult</returns>
+    /// <response code="204">Caso a alteração seja feita com sucesso</response>
+    [HttpDelete("{id}")]
+    public IActionResult DeletarAdocao(int id)
+    {
+        var adocao = _context.Adocao.FirstOrDefault(adocao => adocao.Id == id);
+
+        if (adocao == null) return NotFound();
+
+        _context.Remove(adocao);
+        _context.SaveChanges();
+
+        var pet = _context.Pets.FirstOrDefault(pet => pet.Id == adocao.Pet);
+        if (pet == null) return NotFound();
+        var petParaAdotar = _mapper.Map<UpdatePetDto>(pet);
+        petParaAdotar.Status = "Suspended";
+        petParaAdotar.Owner = null;
+        petParaAdotar.AdoptedDate = null;
+
+        _mapper.Map(petParaAdotar, pet);
+        _context.SaveChanges();
+
+        return NoContent();
+
+    }
+
 }
