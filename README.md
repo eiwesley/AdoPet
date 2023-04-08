@@ -34,11 +34,12 @@ Os times de frontend e UI já estão trabalhando no layout e nas telas. Para o b
 
 - [x] Armazenar no banco de dados as informações sobre os pets.
 - [x] Implementar para /pets POST/GET/GET_ID/PUT/PATCH.
-- [ ] Implemente uma relação entre tutor e Pet, atribuindo para cada Pet um Tutor.
-- [ ] Criar uma rota `GET` relacionando `tutores` e `pet`, exemplo: `GET tutores/:id/pets/`. 
-- [ ] Criar uma rota que busque pet por nome via `query parameters`, exemplo: `GET /pet/?search=pets`. 
-- [ ] Armazenar no banco de dados as informações sobre os abrigos.
-- [ ] Implementar para /abrigos POST/GET/GET_ID/PUT/PATCH.
+- [x] Implemente uma relação entre tutor e Pet, atribuindo para cada Pet um Tutor.
+- [x] Criar uma rota `GET` relacionando `tutores` e `pet`, exemplo: `GET pets/tutor/:id`. 
+- [x] Armazenar no banco de dados as informações sobre os abrigos.
+- [x] Implementar para /abrigos POST/GET/GET_ID/PUT/PATCH.
+- [x] Criar uma rota 'POST' para nova adoção
+- [x] criar uma rota 'DELETE' para adoção
 
 ## :soon: Semana 3 e 4
 
