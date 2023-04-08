@@ -79,6 +79,24 @@ public class TutoresController : ControllerBase
     }
 
     /// <summary>
+    /// Retorna um tutor cadastrado
+    /// </summary>
+    /// <param name="id">ID do tutor cadastrado no banco</param>
+    /// <returns>IActionResult</returns>
+    /// <response code="200">Caso a busca seja feita com sucesso</response>
+    [HttpGet("email/{email}")]
+    public IActionResult BuscarTutorPorEmail(string email)
+    {
+        var tutor = _context.Tutores.FirstOrDefault(tutor => tutor.Email == email);
+
+        if (tutor == null) return NotFound();
+
+        var tutorDto = _mapper.Map<ReadTutorDto>(tutor);
+
+        return Ok(tutorDto);
+    }
+
+    /// <summary>
     /// Atualiza o cadastro completo do tutor selecionado
     /// </summary>
     /// <param name="id">ID do tutor cadastrado no banco</param>
