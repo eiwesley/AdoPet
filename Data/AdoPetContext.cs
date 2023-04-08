@@ -37,5 +37,10 @@ public class AdoPetContext : DbContext
     /// </summary>
     public DbSet<Pets> Pets { get; set; }
 
+    /// <summary>
+    /// Conecta ao banco de dados Abrigo
+    /// </summary>
+    public DbSet<Abrigo> Abrigo { get; set; }
+
 }
 
