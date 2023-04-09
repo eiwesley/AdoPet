@@ -88,7 +88,7 @@ namespace AdoPetApi.Migrations
                     b.ToTable("Abrigo");
                 });
 
-            modelBuilder.Entity("Models.Models.Pets", b =>
+            modelBuilder.Entity("Models.Models.Pet", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -156,10 +156,10 @@ namespace AdoPetApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Pets");
+                    b.ToTable("Pet");
                 });
 
-            modelBuilder.Entity("Models.Models.Tutores", b =>
+            modelBuilder.Entity("Models.Models.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -198,7 +198,7 @@ namespace AdoPetApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tutores");
+                    b.ToTable("User");
                 });
 #pragma warning restore 612, 618
         }

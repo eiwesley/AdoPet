@@ -45,12 +45,12 @@ public class AdocaoController : Controller
         _context.SaveChanges();
 
         // retorna o nome do Tutor cadastrado, de acordo com o ID informado
-        var tutor = _context.Tutores.FirstOrDefault(tutor => tutor.Id == adocaoDto.Tutor);
+        var tutor = _context.User.FirstOrDefault(tutor => tutor.Id == adocaoDto.Tutor);
         if (tutor == null) return NotFound();
         var tutorName = _mapper.Map<ReadTutorDto>(tutor).Name;
 
         // atualiza o status, tutor e data de adoção do pet, de acordo com o ID informado
-        var pet = _context.Pets.FirstOrDefault(pet => pet.Id == adocaoDto.Pet);
+        var pet = _context.Pet.FirstOrDefault(pet => pet.Id == adocaoDto.Pet);
         if (pet == null) return NotFound();
         var petParaAdotar = _mapper.Map<UpdatePetDto>(pet);
         petParaAdotar.Status = "Adopted";
@@ -69,7 +69,8 @@ public class AdocaoController : Controller
     /// <summary>
     /// Deleta o cadastro de um tutor especifico
     /// </summary>
-    /// <param name="id">ID do tutor cadastrado no banco</param>
+    /// <param name="id">Id da Adocao</param>
+    /// <param name="idTutor">ID do tutor cadastrado no banco</param>
     /// <returns>IActionResult</returns>
     /// <response code="204">Caso a alteração seja feita com sucesso</response>
     [HttpDelete("{id}")]
@@ -77,7 +78,7 @@ public class AdocaoController : Controller
     {
 
         // retorna o nome do Tutor cadastrado, de acordo com o ID informado
-        var tutor = _context.Tutores.FirstOrDefault(tutor => tutor.Id == idTutor);
+        var tutor = _context.User.FirstOrDefault(tutor => tutor.Id == idTutor);
         if (tutor == null) return NotFound();
         var tutorProfile = _mapper.Map<ReadTutorDto>(tutor).Profile;
         if ((tutorProfile == "Admin") || (tutorProfile == "Abrigo"))
@@ -89,7 +90,7 @@ public class AdocaoController : Controller
             _context.Remove(adocao);
             _context.SaveChanges();
 
-            var pet = _context.Pets.FirstOrDefault(pet => pet.Id == adocao.Pet);
+            var pet = _context.Pet.FirstOrDefault(pet => pet.Id == adocao.Pet);
             if (pet == null) return NotFound();
             var petParaAdotar = _mapper.Map<UpdatePetDto>(pet);
             petParaAdotar.Status = "Suspended";

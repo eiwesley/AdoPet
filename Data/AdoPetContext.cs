@@ -22,7 +22,7 @@ public class AdoPetContext : DbContext
     /// <summary>
     /// Conecta ao banco de dados Tutores
     /// </summary>
-    public DbSet<Tutores> Tutores { get; set; }
+    public DbSet<User> User { get; set; }
 
     /// <summary>
     /// Função override
@@ -36,7 +36,7 @@ public class AdoPetContext : DbContext
     /// <summary>
     /// Conecta ao banco de dados Pets
     /// </summary>
-    public DbSet<Pets> Pets { get; set; }
+    public DbSet<Pet> Pet { get; set; }
 
     /// <summary>
     /// Conecta ao banco de dados Abrigo

@@ -5,7 +5,7 @@ namespace Models.Models;
 /// <summary>
 /// Classe mãe, responsavel pelo mapeamento dos campos, para inserção ou consulta ao banco.
 /// </summary>
-public class Pets
+public class Pet
 {
     /// <summary>
     /// ID do pet cadastrado no banco

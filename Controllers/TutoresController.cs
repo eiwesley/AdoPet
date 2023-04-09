@@ -40,9 +40,9 @@ public class TutoresController : ControllerBase
     [ProducesResponseType(StatusCodes.Status201Created)]
     public IActionResult CadastarTutor([FromBody] CreateTutorDto tutorDto)
     {
-        Tutores tutor = _mapper.Map<Tutores>(tutorDto);
+        User tutor = _mapper.Map<User>(tutorDto);
 
-        _context.Tutores.Add(tutor);
+        _context.User.Add(tutor);
         _context.SaveChanges();
 
         return CreatedAtAction(nameof(BuscarTutorPorId), new { id = tutor.Id }, tutor);
@@ -57,7 +57,7 @@ public class TutoresController : ControllerBase
     [HttpGet]
     public IEnumerable<ReadTutorDto> BuscarTutores([FromQuery] int skip = 0, [FromQuery] int take = 50)
     {
-        return _mapper.Map<List<ReadTutorDto>>(_context.Tutores.Skip(skip).Take(take));
+        return _mapper.Map<List<ReadTutorDto>>(_context.User.Skip(skip).Take(take));
     }
 
     /// <summary>
@@ -69,7 +69,7 @@ public class TutoresController : ControllerBase
     [HttpGet("{id}")]
     public IActionResult BuscarTutorPorId(int id) 
     {
-        var tutor = _context.Tutores.FirstOrDefault(tutor => tutor.Id == id);
+        var tutor = _context.User.FirstOrDefault(tutor => tutor.Id == id);
 
         if(tutor == null) return NotFound();
 
@@ -87,7 +87,7 @@ public class TutoresController : ControllerBase
     [HttpGet("email/{email}")]
     public IActionResult BuscarTutorPorEmail(string email)
     {
-        var tutor = _context.Tutores.FirstOrDefault(tutor => tutor.Email == email);
+        var tutor = _context.User.FirstOrDefault(tutor => tutor.Email == email);
 
         if (tutor == null) return NotFound();
 
@@ -105,7 +105,7 @@ public class TutoresController : ControllerBase
     [HttpPatch("{id}/disable")]
     public IActionResult DesabilitarTutor(int id)
     {
-        var tutor = _context.Tutores.FirstOrDefault(tutor => tutor.Id == id);
+        var tutor = _context.User.FirstOrDefault(tutor => tutor.Id == id);
 
         if (tutor == null) return NotFound();
 
@@ -127,7 +127,7 @@ public class TutoresController : ControllerBase
     [HttpPatch("{id}/enable")]
     public IActionResult HabilitarTutor(int id)
     {
-        var tutor = _context.Tutores.FirstOrDefault(tutor => tutor.Id == id);
+        var tutor = _context.User.FirstOrDefault(tutor => tutor.Id == id);
 
         if (tutor == null) return NotFound();
 
@@ -150,7 +150,7 @@ public class TutoresController : ControllerBase
     [HttpPut("{id}")]
     public IActionResult AtualizarTutor(int id, [FromBody] UpdateTutorDto tutorDto)
     {
-        var tutor = _context.Tutores.FirstOrDefault(tutor => tutor.Id == id);
+        var tutor = _context.User.FirstOrDefault(tutor => tutor.Id == id);
 
         if (tutor == null) return NotFound();
 
@@ -169,7 +169,7 @@ public class TutoresController : ControllerBase
     [HttpPatch("{id}")]
     public IActionResult AtualizarTutorParial(int id, JsonPatchDocument<UpdateTutorDto> patch)
     {
-        var tutor = _context.Tutores.FirstOrDefault(tutor => tutor.Id == id);
+        var tutor = _context.User.FirstOrDefault(tutor => tutor.Id == id);
 
         if (tutor == null) return NotFound();
 

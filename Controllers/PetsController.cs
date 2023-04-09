@@ -46,8 +46,8 @@ public class PetsController : Controller
             return BadRequest("A URL fornecida é inválida.");
         }
 
-        Pets pet = _mapper.Map<Pets>(petDto);
-        _context.Pets.Add(pet);
+        Pet pet = _mapper.Map<Pet>(petDto);
+        _context.Pet.Add(pet);
         _context.SaveChanges();
 
         return CreatedAtAction(nameof(BuscarPetPorId),new {id = pet.Id}, pet);
@@ -64,7 +64,7 @@ public class PetsController : Controller
     {
         //return _mapper.Map<List<ReadPetDto>>(_context.Pets.Skip(skip).Take(take));
 
-        return _mapper.Map<List<ReadPetDto>>(_context.Pets.Where(status => status.Status != "Adopted").Skip(skip).Take(take));
+        return _mapper.Map<List<ReadPetDto>>(_context.Pet.Where(status => status.Status != "Adopted").Skip(skip).Take(take));
     }
 
     /// <summary>
@@ -77,7 +77,7 @@ public class PetsController : Controller
     [HttpGet("{id}")]
     public IActionResult BuscarPetPorId(int id) 
     {
-        var pet = _context.Pets.FirstOrDefault(pet => pet.Id == id);
+        var pet = _context.Pet.FirstOrDefault(pet => pet.Id == id);
         if (pet == null)
         {
             return NotFound();
@@ -98,10 +98,10 @@ public class PetsController : Controller
     [HttpGet("tutor/{id}")]
     public IEnumerable<ReadPetDto> BuscarPetPorIdTutor(int id)
     {
-        var tutor = _context.Tutores.FirstOrDefault(tutor => tutor.Id == id);
+        var tutor = _context.User.FirstOrDefault(tutor => tutor.Id == id);
         var tutorName = _mapper.Map<ReadTutorDto>(tutor).Name;
 
-        return _mapper.Map<List<ReadPetDto>>(_context.Pets.Where(t => t.Owner == tutorName));
+        return _mapper.Map<List<ReadPetDto>>(_context.Pet.Where(t => t.Owner == tutorName));
     }
 
     /// <summary>
@@ -113,7 +113,7 @@ public class PetsController : Controller
     [HttpGet("name/{name}")]
     public IActionResult BuscarPetPorNome(string name)
     {
-        var pet = _context.Pets.FirstOrDefault(pet => pet.Name == name);
+        var pet = _context.Pet.FirstOrDefault(pet => pet.Name == name);
 
         if (pet == null) return NotFound();
 
@@ -131,7 +131,7 @@ public class PetsController : Controller
     [HttpPatch("{id}/approve")]
     public IActionResult AprovarPet(int id)
     {
-        var pet = _context.Pets.FirstOrDefault(pet => pet.Id == id);
+        var pet = _context.Pet.FirstOrDefault(pet => pet.Id == id);
 
         if (pet == null) return NotFound();
 
@@ -155,7 +155,7 @@ public class PetsController : Controller
     [HttpPut("{id}")]
     public IActionResult AtualizarPet(int id, [FromBody] UpdatePetDto petDto)
     {
-        var pet = _context.Pets.FirstOrDefault(pet => pet.Id == id);
+        var pet = _context.Pet.FirstOrDefault(pet => pet.Id == id);
 
         if (pet == null) return NotFound();
 
@@ -175,7 +175,7 @@ public class PetsController : Controller
     [HttpPatch("{id}")]
     public IActionResult AtualizarPetParial(int id, JsonPatchDocument<UpdatePetDto> patch)
     {
-        var pet = _context.Pets.FirstOrDefault(pet => pet.Id == id);
+        var pet = _context.Pet.FirstOrDefault(pet => pet.Id == id);
 
         if (pet == null) return NotFound();
 
