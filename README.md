@@ -44,7 +44,6 @@ Os times de frontend e UI já estão trabalhando no layout e nas telas. Para o b
 
 ## :construction: Semana 3 e 4
 
-- Ainda não divulgado
  - [ ] Sistema de autenticação do perfil de abrigo e Tutores. 
  - [ ] Autorização de cancelar uma adoção apenas pelo abrigo.
  - [ ] Paginação da API, trazendo 10 itens por pagina `GET /pets/?page=2`. 
