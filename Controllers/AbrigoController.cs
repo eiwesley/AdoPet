@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
-using Data.DTOs.Abrigo;
-using Data.DTOs.Pet;
-using Data.DTOs.Tutor;
+using Data.DTOs.Abrigos;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Models.Data;

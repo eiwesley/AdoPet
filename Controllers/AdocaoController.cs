@@ -7,7 +7,7 @@ using Models.Models;
 using AdoPet.Controllers;
 using Data.DTOs.Pets;
 using Data.DTOs.Tutor;
-using Data.DTOs.Pet;
+
 
 namespace AdoPet.Controllers;
 
