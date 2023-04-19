@@ -1,11 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Models.Models;
+using System.ComponentModel.DataAnnotations;
 
-namespace Data.DTOs.Abrigo;
+namespace Data.DTOs.Abrigos;
 
 /// <summary>
-/// Classe Responsabel pela atualização do cadastro
+/// Classe Responsabel pela criação do cadastro
 /// </summary>
-public class UpdateAbrigoDto
+public class CreateAbrigoDto
 {
     /// <summary>
     /// Responsavel pelo abrigo
@@ -21,11 +22,13 @@ public class UpdateAbrigoDto
     [MaxLength(100, ErrorMessage = "O tamanho do endereço nao pode exceder 100 caracteres")]
     public string? Address1 { get; set; }
 
+
     /// <summary>
     /// Complemento do abrigo
     /// </summary>
     [MaxLength(50, ErrorMessage = "O tamanho do complemento nao pode exceder 50 caracteres")]
     public string? Address2 { get; set; }
+
 
     /// <summary>
     /// numero do endereço do abrigo
@@ -52,5 +55,10 @@ public class UpdateAbrigoDto
     /// </summary>
     [Required(ErrorMessage = "O status do local para cadastro é obrigatório!")]
     public bool Active { get; set; }
+
+    ///// <summary>
+    ///// Lita de Pets que estão abrigados
+    ///// </summary>
+    //public List<Pet>? PetsAbrigados { get; set; }
 
 }

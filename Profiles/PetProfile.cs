@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Data.DTOs.Pet;
+using Data.DTOs.Pets;
 using Models.Models;
 
 namespace Profiles;

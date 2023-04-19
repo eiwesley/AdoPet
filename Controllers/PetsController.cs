@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Data.DTOs.Pet;
+using Data.DTOs.Pets;
 using Data.DTOs.Tutor;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Models.Data;
 using Models.Models;
 using System.Linq;
@@ -50,7 +52,7 @@ public class PetsController : Controller
         _context.Pet.Add(pet);
         _context.SaveChanges();
 
-        return CreatedAtAction(nameof(BuscarPetPorId),new {id = pet.Id}, pet);
+        return CreatedAtAction(nameof(BuscarPetPorId), new { id = pet.Id }, pet);
     }
 
     /// <summary>
@@ -75,7 +77,7 @@ public class PetsController : Controller
     /// <response code="200">Caso a busca seja feita com sucesso</response>
     /// <response code="404">Caso não exista o ID cadastrado</response>
     [HttpGet("{id}")]
-    public IActionResult BuscarPetPorId(int id) 
+    public IActionResult BuscarPetPorId(int id)
     {
         var pet = _context.Pet.FirstOrDefault(pet => pet.Id == id);
         if (pet == null)
@@ -101,7 +103,7 @@ public class PetsController : Controller
         var tutor = _context.User.FirstOrDefault(tutor => tutor.Id == id);
         var tutorName = _mapper.Map<ReadTutorDto>(tutor).Name;
 
-        return _mapper.Map<List<ReadPetDto>>(_context.Pet.Where(t => t.Owner == tutorName));
+        return _mapper.Map<List<ReadPetDto>>(_context.Pet.Where(t => t.UserId == id));
     }
 
     /// <summary>

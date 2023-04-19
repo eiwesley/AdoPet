@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using AdoPet.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace Models.Models;
 
@@ -32,8 +33,8 @@ public class Pet
     /// Idade do Pet
     /// </summary>
     [Required(ErrorMessage = "A idade para cadastro é obrigatoria!")]
-    [Range(0,30,ErrorMessage = "A idade do Pet deve ser entre 0 e 30 anos")]
-    public double  Age { get; set; }
+    [Range(0, 30, ErrorMessage = "A idade do Pet deve ser entre 0 e 30 anos")]
+    public double Age { get; set; }
 
     /// <summary>
     /// A raça do pet
@@ -91,13 +92,23 @@ public class Pet
     public string? Status { get; set; }
 
     /// <summary>
-    /// Responsavel pelo pet
+    /// Objeto Adocao
     /// </summary>
-    public string? Owner { get; set; }
+    public Adocao? Adocao { get; set; }
 
     /// <summary>
-    /// Data de Adoção
+    /// UserID do Tutor do Pet
     /// </summary>
-    public DateTime? AdoptedDate { get; set; }
+    public int UserId { get; set; }
+
+    /// <summary>
+    /// ID do Abrigo
+    /// </summary>
+    public int AbrigoId { get; set; }
+
+    /// <summary>
+    /// Abrigo aonde o Pet esta habitando
+    /// </summary>
+    public virtual Abrigo? Abrigo { get; set; }
 
 }

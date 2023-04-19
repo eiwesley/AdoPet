@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using AdoPet.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace Models.Models;
 
@@ -36,9 +37,9 @@ public class User
     public string? Password { get; set; }
 
     /// <summary>
-    /// Nome do Pet do tutoe
+    /// Lista de Pets do tutor
     /// </summary>
-    public string? PetName { get; set; }
+    public List<Pet>? Pets { get; set; }
 
     /// <summary>
     /// Imagem do tutor
@@ -56,4 +57,9 @@ public class User
     [Required(ErrorMessage = "O tipo de perfil para cadastro é obrigatorio!")]
     [MaxLength(20, ErrorMessage = "O tamanho do perfil nao pode exceder 20 caracteres")]
     public string? Profile { get; set; }
+
+    /// <summary>
+    /// Lista de adoções do tutor
+    /// </summary>
+    public List<Adocao>? Adocoes { get; set; }
 }

@@ -67,11 +67,11 @@ public class TutoresController : ControllerBase
     /// <returns>IActionResult</returns>
     /// <response code="200">Caso a busca seja feita com sucesso</response>
     [HttpGet("{id}")]
-    public IActionResult BuscarTutorPorId(int id) 
+    public IActionResult BuscarTutorPorId(int id)
     {
         var tutor = _context.User.FirstOrDefault(tutor => tutor.Id == id);
 
-        if(tutor == null) return NotFound();
+        if (tutor == null) return NotFound();
 
         var tutorDto = _mapper.Map<ReadTutorDto>(tutor);
 

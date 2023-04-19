@@ -8,6 +8,13 @@ namespace AdoPet.Models;
 public class ReadAdocaoDto
 {
     /// <summary>
+    /// ID do tutor cadastrado no banco
+    /// </summary>
+    [Key]
+    [Required]
+    public int Id { get; set; }
+
+    /// <summary>
     /// Nome do Tutor
     /// </summary>
     public int Pet { get; set; }
@@ -15,16 +22,11 @@ public class ReadAdocaoDto
     /// <summary>
     /// Nome do Tutor
     /// </summary>
-    public int Tutor { get; set; }
+    public int UserId { get; set; }
 
     /// <summary>
     /// Nome do Tutor
     /// </summary>
     public DateTime Date { get; set; }
-
-    /// <summary>
-    /// Hora da Consulta
-    /// </summary>
-    public DateTime HoraDaConsulta { get; set; } = DateTime.Now;
 
 }

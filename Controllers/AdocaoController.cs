@@ -1,12 +1,13 @@
 ﻿using AdoPet.Models;
 using AutoMapper;
-using Data.DTOs.Abrigo;
+using Data.DTOs.Abrigos;
 using Microsoft.AspNetCore.Mvc;
 using Models.Data;
 using Models.Models;
 using AdoPet.Controllers;
-using Data.DTOs.Pet;
+using Data.DTOs.Pets;
 using Data.DTOs.Tutor;
+using Data.DTOs.Pet;
 
 namespace AdoPet.Controllers;
 
@@ -45,17 +46,15 @@ public class AdocaoController : Controller
         _context.SaveChanges();
 
         // retorna o nome do Tutor cadastrado, de acordo com o ID informado
-        var tutor = _context.User.FirstOrDefault(tutor => tutor.Id == adocaoDto.Tutor);
+        var tutor = _context.User.FirstOrDefault(tutor => tutor.Id == adocaoDto.UserId);
         if (tutor == null) return NotFound();
-        var tutorName = _mapper.Map<ReadTutorDto>(tutor).Name;
 
-        // atualiza o status, tutor e data de adoção do pet, de acordo com o ID informado
+        // atualiza o status e tutor, de acordo com o ID informado
         var pet = _context.Pet.FirstOrDefault(pet => pet.Id == adocaoDto.Pet);
         if (pet == null) return NotFound();
         var petParaAdotar = _mapper.Map<UpdatePetDto>(pet);
         petParaAdotar.Status = "Adopted";
-        petParaAdotar.Owner = tutorName;
-        petParaAdotar.AdoptedDate = adocaoDto.Date;
+        petParaAdotar.UserId = tutor.Id;
 
         _mapper.Map(petParaAdotar, pet);
         _context.SaveChanges();
@@ -94,8 +93,7 @@ public class AdocaoController : Controller
             if (pet == null) return NotFound();
             var petParaAdotar = _mapper.Map<UpdatePetDto>(pet);
             petParaAdotar.Status = "Suspended";
-            petParaAdotar.Owner = null;
-            petParaAdotar.AdoptedDate = null;
+            petParaAdotar.UserId = 0;
 
             _mapper.Map(petParaAdotar, pet);
             _context.SaveChanges();
@@ -106,7 +104,7 @@ public class AdocaoController : Controller
         {
             return BadRequest();
         }
-            
+
 
 
 

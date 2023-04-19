@@ -1,15 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using AdoPet.Models;
+using Models.Models;
+using System.ComponentModel.DataAnnotations;
 
-namespace Data.DTOs.Pet;
-
+namespace Data.DTOs.Pets;
 /// <summary>
-/// Classe Responsabel pela criação do cadastro
+/// Classe Responsabel pela atualização do cadastro do pet
 /// </summary>
-public class CreatePetDto
-{
-    /// <summary>
-    /// Nome do Pet
-    /// </summary>
+public class UpdatePetDto
+{/// <summary>
+ /// Nome do Pet
+ /// </summary>
     [Required(ErrorMessage = "O nome para cadastro é obrigatório!")]
     [MaxLength(50, ErrorMessage = "O tamanho do nome nao pode exceder 50 caracteres")]
     public string? Name { get; set; }
@@ -81,16 +81,26 @@ public class CreatePetDto
     /// </summary>
     [Required(ErrorMessage = "A status do pet para cadastro é obrigatorio!")]
     [MaxLength(50, ErrorMessage = "A status nao pode exceder 50 caracteres. Utilize 'New, Available, Adopted, Quarantane, Removed, Suspended'.")]
-    public string? Status { get; set; } = "New";
+    public string? Status { get; set; }
 
     /// <summary>
-    /// Responsavel pelo pet
+    /// Objeto Adocao
     /// </summary>
-    public string? Owner { get; set; }
+    public Adocao? Adocao { get; set; }
 
     /// <summary>
-    /// Data de Adoção
+    /// UserID do Tutor do Pet
     /// </summary>
-    public DateTime? AdoptedDate { get; set; }
+    public int UserId { get; set; }
+
+    /// <summary>
+    /// ID do Abrigo
+    /// </summary>
+    public int AbrigoId { get; set; }
+
+    /// <summary>
+    /// Abrigo aonde o Pet esta habitando
+    /// </summary>
+    public Abrigo? Abrigo { get; set; }
 }
 

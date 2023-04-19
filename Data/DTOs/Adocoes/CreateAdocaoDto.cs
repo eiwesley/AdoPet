@@ -5,19 +5,17 @@ namespace AdoPet.Models;
 /// <summary>
 /// Classe mãe, responsavel pelo mapeamento dos campos, para inserção ou consulta ao banco.
 /// </summary>
-public class UpdateAdocaoDto
+public class CreateAdocaoDto
 {
     /// <summary>
     /// Nome do Tutor
     /// </summary>
-    [Required(ErrorMessage = "O ID do Pet é obrigatório!")]
     public int Pet { get; set; }
 
     /// <summary>
     /// Nome do Tutor
     /// </summary>
-    [Required(ErrorMessage = "O ID do Tutor é obrigatório!")]
-    public int Tutor { get; set; }
+    public int UserId { get; set; }
 
     /// <summary>
     /// Nome do Tutor

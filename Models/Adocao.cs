@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Models.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace AdoPet.Models;
 
@@ -17,14 +18,12 @@ public class Adocao
     /// <summary>
     /// Nome do Tutor
     /// </summary>
-    [Required(ErrorMessage = "O ID do Pet é obrigatório!")]
     public int Pet { get; set; }
 
     /// <summary>
     /// Nome do Tutor
     /// </summary>
-    [Required(ErrorMessage = "O ID do Tutor é obrigatório!")]
-    public int Tutor { get; set; }
+    public int UserId { get; set; }
 
     /// <summary>
     /// Nome do Tutor

@@ -1,6 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Models.Models;
+using System.ComponentModel.DataAnnotations;
 
-namespace Data.DTOs.Abrigo;
+namespace Data.DTOs.Abrigos;
 
 /// <summary>
 /// Classe Responsabel pela leitura do cadastro
@@ -10,6 +11,8 @@ public class ReadAbrigoDto
     /// <summary>
     /// Id do cadsatro do abrigo
     /// </summary>
+    [Key]
+    [Required]
     public int Id { get; set; }
 
     /// <summary>
@@ -21,6 +24,7 @@ public class ReadAbrigoDto
     /// Endereço principal do abrigo
     /// </summary>
     public string? Address1 { get; set; }
+
 
     /// <summary>
     /// Complemento do abrigo
@@ -38,21 +42,19 @@ public class ReadAbrigoDto
     /// </summary>
     public string? City { get; set; }
 
-
     /// <summary>
     /// Estado o Abrigo
     /// </summary>
     public string? State { get; set; }
 
-
     /// <summary>
     /// Status do Abrigo, ativo ou não
     /// </summary>
-    public bool? Active { get; set; }
+    public bool Active { get; set; }
 
     /// <summary>
-    /// Hora da Consulta
+    /// Lita de Pets que estão abrigados
     /// </summary>
-    public DateTime HoraDaConsulta { get; set; } = DateTime.Now;
+    public List<Pet>? PetsAbrigados { get; set; }
 
 }

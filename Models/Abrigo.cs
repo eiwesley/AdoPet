@@ -56,11 +56,15 @@ public class Abrigo
     [MaxLength(2, ErrorMessage = "O tamanho do estado nao pode exceder 2 caracteres, utilizado a UF do estado!")]
     public string? State { get; set; }
 
-
     /// <summary>
     /// Status do Abrigo, ativo ou não
     /// </summary>
     [Required(ErrorMessage = "O status do local para cadastro é obrigatório!")]
     public bool Active { get; set; }
+
+    /// <summary>
+    /// Lita de Pets que estão abrigados
+    /// </summary>
+    public List<Pet>? PetsAbrigados { get; set; }
 
 }

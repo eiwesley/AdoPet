@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Data.DTOs.Abrigo;
-using Data.DTOs.Pet;
+using Data.DTOs.Abrigos;
+using Data.DTOs.Pets;
 using Models.Models;
 
 namespace AdoPet.Profiles;
