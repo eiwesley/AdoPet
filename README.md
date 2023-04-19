@@ -42,7 +42,7 @@ Os times de frontend e UI já estão trabalhando no layout e nas telas. Para o b
 - [x] Criar uma rota `POST` para nova adoção, caso todos os pets estejam preenchidos e validados.
 - [x] criar uma rota `DELETE` para adoção, caso o nível do perfil seja Admin ou Abrigo.
 
-## construction: Semana 3 e 4
+## :construction: Semana 3 e 4
 
 - Ainda não divulgado
  - [ ] Sistema de autenticação do perfil de abrigo e Tutores. 
