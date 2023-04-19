@@ -30,7 +30,7 @@ Os times de frontend e UI já estão trabalhando no layout e nas telas. Para o b
 - [x] Implementar para /tutores POST/GET/GET_ID/PUT/PATCH.
 - [x] PUT atualiza um ou mais campos de um tutor. Retornar um Json com informações do tutor atualizado.
 
-## :construction: Semana 2
+## :white_check_mark: Semana 2
 
 - [x] Armazenar no banco de dados as informações sobre os pets.
 - [x] Implementar para /pets POST/GET/GET_ID/PUT/PATCH.
@@ -39,15 +39,18 @@ Os times de frontend e UI já estão trabalhando no layout e nas telas. Para o b
 - [x] Criar uma rota `GET` relacionando `tutores` e `pet`, exemplo: `GET pets/tutor/:id`. 
 - [x] Armazenar no banco de dados as informações sobre os abrigos.
 - [x] Implementar para /abrigos POST/GET/GET_ID/PUT/PATCH.
-- [x] Criar uma rota 'POST' para nova adoção, caso todos os pets estejam preenchidos e validados.
-- [x] criar uma rota 'DELETE' para adoção, caso o nível do perfil seja Admin ou Abrigo.
+- [x] Criar uma rota `POST` para nova adoção, caso todos os pets estejam preenchidos e validados.
+- [x] criar uma rota `DELETE` para adoção, caso o nível do perfil seja Admin ou Abrigo.
 
-## :soon: Semana 3 e 4
+## construction: Semana 3 e 4
 
 - Ainda não divulgado
-<!-- - [ ] Sistema de autenticação. -->
-<!-- - [ ] Alteração no banco de dados para tabela de usuário.-->
-<!-- - [ ] Deploy.-->
+ - [ ] Sistema de autenticação do perfil de abrigo e Tutores. 
+ - [ ] Autorização de cancelar uma adoção apenas pelo abrigo.
+ - [ ] Paginação da API, trazendo 10 itens por pagina `GET /pets/?page=2`. 
+ - [ ] Integração com Front-End.
+ - [ ] ICriação de scripts para teste.
+ - [ ] Deploy.
 
 ## ✔️ Tecnologias utilizadas
 
