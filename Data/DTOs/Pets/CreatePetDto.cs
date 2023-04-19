@@ -1,6 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using AdoPet.Models;
+using Models.Models;
+using System.ComponentModel.DataAnnotations;
 
-namespace Data.DTOs.Pet;
+namespace Data.DTOs.Pets;
 
 /// <summary>
 /// Classe Responsabel pela criação do cadastro
@@ -81,16 +83,26 @@ public class CreatePetDto
     /// </summary>
     [Required(ErrorMessage = "A status do pet para cadastro é obrigatorio!")]
     [MaxLength(50, ErrorMessage = "A status nao pode exceder 50 caracteres. Utilize 'New, Available, Adopted, Quarantane, Removed, Suspended'.")]
-    public string? Status { get; set; } = "New";
+    public string? Status { get; set; }
+
+    ///// <summary>
+    ///// Objeto Adocao
+    ///// </summary>
+    //public Adocao? Adocao { get; set; }
 
     /// <summary>
-    /// Responsavel pelo pet
+    /// UserID do Tutor do Pet
     /// </summary>
-    public string? Owner { get; set; }
+    public int UserId { get; set; }
 
     /// <summary>
-    /// Data de Adoção
+    /// ID do Abrigo
     /// </summary>
-    public DateTime? AdoptedDate { get; set; }
+    public int AbrigoId { get; set; }
+
+    ///// <summary>
+    ///// Abrigo aonde o Pet esta habitando
+    ///// </summary>
+    //public Abrigo? Abrigo { get; set; }
 }
 

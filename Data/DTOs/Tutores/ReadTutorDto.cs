@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using AdoPet.Models;
+using Models.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace Data.DTOs.Tutor;
 
@@ -7,6 +9,13 @@ namespace Data.DTOs.Tutor;
 /// </summary>
 public class ReadTutorDto
 {
+    /// <summary>
+    /// ID do tutor cadastrado no banco
+    /// </summary>
+    [Key]
+    [Required]
+    public int Id { get; set; }
+
     /// <summary>
     /// Nome do Tutor
     /// </summary>
@@ -23,9 +32,9 @@ public class ReadTutorDto
     public string? Password { get; set; }
 
     /// <summary>
-    /// Nome do Pet do tutoe
+    /// Lista de Pets do tutor
     /// </summary>
-    public string? PetName { get; set; }
+    public List<Pet>? Pets { get; set; }
 
     /// <summary>
     /// Imagem do tutor
@@ -35,12 +44,17 @@ public class ReadTutorDto
     /// <summary>
     /// Tutor ativo ou não.
     /// </summary>
-    public bool Active { get; set; }
+    public Boolean Active { get; set; }
 
     /// <summary>
     /// Tipo de Perfil - Adm, Tutor, etc....
     /// </summary>
     public string? Profile { get; set; }
+
+    /// <summary>
+    /// Lista de adoções do tutor
+    /// </summary>
+    public List<Adocao>? Adocoes { get; set; }
 
     /// <summary>
     /// Hora da Consulta

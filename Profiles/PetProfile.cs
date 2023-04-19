@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Data.DTOs.Pet;
+using Data.DTOs.Pets;
 using Models.Models;
 
 namespace Profiles;
@@ -14,9 +14,9 @@ public class PetProfile : Profile
     /// </summary>
     public PetProfile()
     {
-        CreateMap<CreatePetDto, Pets>();
-        CreateMap<UpdatePetDto, Pets>();
-        CreateMap<Pets, UpdatePetDto>();
-        CreateMap<Pets, ReadPetDto>();
+        CreateMap<CreatePetDto, Pet>();
+        CreateMap<UpdatePetDto, Pet>();
+        CreateMap<Pet, UpdatePetDto>();
+        CreateMap<Pet, ReadPetDto>();
     }
 }

@@ -1,22 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using AdoPet.Models;
+using Models.Models;
+using System.ComponentModel.DataAnnotations;
 
-namespace Models.Models;
-
+namespace Data.DTOs.Pets;
 /// <summary>
-/// Classe mãe, responsavel pelo mapeamento dos campos, para inserção ou consulta ao banco.
+/// Classe Responsabel pela atualização do cadastro do pet
 /// </summary>
-public class Pets
-{
-    /// <summary>
-    /// ID do pet cadastrado no banco
-    /// </summary>
-    [Key]
-    [Required]
-    public int Id { get; set; }
-
-    /// <summary>
-    /// Nome do Pet
-    /// </summary>
+public class UpdatePetDto
+{/// <summary>
+ /// Nome do Pet
+ /// </summary>
     [Required(ErrorMessage = "O nome para cadastro é obrigatório!")]
     [MaxLength(50, ErrorMessage = "O tamanho do nome nao pode exceder 50 caracteres")]
     public string? Name { get; set; }
@@ -32,8 +25,8 @@ public class Pets
     /// Idade do Pet
     /// </summary>
     [Required(ErrorMessage = "A idade para cadastro é obrigatoria!")]
-    [Range(0,30,ErrorMessage = "A idade do Pet deve ser entre 0 e 30 anos")]
-    public double  Age { get; set; }
+    [Range(0, 30, ErrorMessage = "A idade do Pet deve ser entre 0 e 30 anos")]
+    public double Age { get; set; }
 
     /// <summary>
     /// A raça do pet
@@ -91,13 +84,23 @@ public class Pets
     public string? Status { get; set; }
 
     /// <summary>
-    /// Responsavel pelo pet
+    /// Objeto Adocao
     /// </summary>
-    public string? Owner { get; set; }
+    public Adocao? Adocao { get; set; }
 
     /// <summary>
-    /// Data de Adoção
+    /// UserID do Tutor do Pet
     /// </summary>
-    public DateTime? AdoptedDate { get; set; }
+    public int UserId { get; set; }
 
+    /// <summary>
+    /// ID do Abrigo
+    /// </summary>
+    public int AbrigoId { get; set; }
+
+    /// <summary>
+    /// Abrigo aonde o Pet esta habitando
+    /// </summary>
+    public Abrigo? Abrigo { get; set; }
 }
+

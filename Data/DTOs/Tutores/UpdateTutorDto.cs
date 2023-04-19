@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using AdoPet.Models;
+using Models.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace Data.DTOs.Tutor;
 
@@ -11,28 +13,27 @@ public class UpdateTutorDto
     /// Nome do Tutor
     /// </summary>
     [Required(ErrorMessage = "O nome para cadastro é obrigatório!")]
-    [StringLength(50, ErrorMessage = "O tamanho do npme nao pode exceder 50 caracteres")]
+    [MaxLength(50, ErrorMessage = "O tamanho do npme nao pode exceder 50 caracteres")]
     public string? Name { get; set; }
 
     /// <summary>
     /// Email do Tutor
     /// </summary>
     [Required(ErrorMessage = "O e-mail para cadastro é obrigatorio!")]
-    [StringLength(50, ErrorMessage = "O tamanho do e-mail nao pode exceder 50 caracteres")]
+    [MaxLength(50, ErrorMessage = "O tamanho do e-mail nao pode exceder 50 caracteres")]
     public string? Email { get; set; }
 
     /// <summary>
     /// Senha de acesso do Tutor
     /// </summary>
     [Required(ErrorMessage = "A senha para cadastro é obrigatoria!")]
-    [StringLength(20, ErrorMessage = "O tamanho da senha nao pode exceder 20 caracteres")]
-    [DataType(DataType.Password)]
+    [MaxLength(20, ErrorMessage = "O tamanho da senha nao pode exceder 20 caracteres")]
     public string? Password { get; set; }
 
     /// <summary>
-    /// Nome do Pet do tutoe
+    /// Lista de Pets do tutor
     /// </summary>
-    public string? PetName { get; set; }
+    public List<Pet>? Pets { get; set; }
 
     /// <summary>
     /// Imagem do tutor
@@ -42,7 +43,7 @@ public class UpdateTutorDto
     /// <summary>
     /// Tutor ativo ou não.
     /// </summary>
-    public bool Active { get; set; }
+    public Boolean Active { get; set; }
 
     /// <summary>
     /// Tipo de Perfil - Adm, Tutor, etc....
@@ -50,4 +51,9 @@ public class UpdateTutorDto
     [Required(ErrorMessage = "O tipo de perfil para cadastro é obrigatorio!")]
     [MaxLength(20, ErrorMessage = "O tamanho do perfil nao pode exceder 20 caracteres")]
     public string? Profile { get; set; }
+
+    /// <summary>
+    /// Lista de adoções do tutor
+    /// </summary>
+    public List<Adocao>? Adocoes { get; set; }
 }

@@ -40,9 +40,9 @@ public class TutoresController : ControllerBase
     [ProducesResponseType(StatusCodes.Status201Created)]
     public IActionResult CadastarTutor([FromBody] CreateTutorDto tutorDto)
     {
-        Tutores tutor = _mapper.Map<Tutores>(tutorDto);
+        User tutor = _mapper.Map<User>(tutorDto);
 
-        _context.Tutores.Add(tutor);
+        _context.User.Add(tutor);
         _context.SaveChanges();
 
         return CreatedAtAction(nameof(BuscarTutorPorId), new { id = tutor.Id }, tutor);
@@ -57,7 +57,7 @@ public class TutoresController : ControllerBase
     [HttpGet]
     public IEnumerable<ReadTutorDto> BuscarTutores([FromQuery] int skip = 0, [FromQuery] int take = 50)
     {
-        return _mapper.Map<List<ReadTutorDto>>(_context.Tutores.Skip(skip).Take(take));
+        return _mapper.Map<List<ReadTutorDto>>(_context.User.Skip(skip).Take(take));
     }
 
     /// <summary>
@@ -67,15 +67,77 @@ public class TutoresController : ControllerBase
     /// <returns>IActionResult</returns>
     /// <response code="200">Caso a busca seja feita com sucesso</response>
     [HttpGet("{id}")]
-    public IActionResult BuscarTutorPorId(int id) 
+    public IActionResult BuscarTutorPorId(int id)
     {
-        var tutor = _context.Tutores.FirstOrDefault(tutor => tutor.Id == id);
+        var tutor = _context.User.FirstOrDefault(tutor => tutor.Id == id);
 
-        if(tutor == null) return NotFound();
+        if (tutor == null) return NotFound();
 
         var tutorDto = _mapper.Map<ReadTutorDto>(tutor);
 
         return Ok(tutorDto);
+    }
+
+    /// <summary>
+    /// Retorna um tutor cadastrado através do E-mail
+    /// </summary>
+    /// <param name="email">ID do tutor cadastrado no banco</param>
+    /// <returns>IActionResult</returns>
+    /// <response code="200">Caso a busca seja feita com sucesso</response>
+    [HttpGet("email/{email}")]
+    public IActionResult BuscarTutorPorEmail(string email)
+    {
+        var tutor = _context.User.FirstOrDefault(tutor => tutor.Email == email);
+
+        if (tutor == null) return NotFound();
+
+        var tutorDto = _mapper.Map<ReadTutorDto>(tutor);
+
+        return Ok(tutorDto);
+    }
+
+    /// <summary>
+    /// Desabilita o cadastro do tutor selecionado
+    /// </summary>
+    /// <param name="id">ID do tutor cadastrado no banco</param>
+    /// <returns>IActionResult</returns>
+    /// <response code="204">Caso a alteração seja feita com sucesso</response>
+    [HttpPatch("{id}/disable")]
+    public IActionResult DesabilitarTutor(int id)
+    {
+        var tutor = _context.User.FirstOrDefault(tutor => tutor.Id == id);
+
+        if (tutor == null) return NotFound();
+
+        var tutorParaAtualizar = _mapper.Map<UpdateTutorDto>(tutor);
+        tutorParaAtualizar.Active = false;
+
+        _mapper.Map(tutorParaAtualizar, tutor);
+        _context.SaveChanges();
+        return NoContent();
+
+    }
+
+    /// <summary>
+    /// Habilita o cadastro do tutor selecionado
+    /// </summary>
+    /// <param name="id">ID do tutor cadastrado no banco</param>
+    /// <returns>IActionResult</returns>
+    /// <response code="204">Caso a alteração seja feita com sucesso</response>
+    [HttpPatch("{id}/enable")]
+    public IActionResult HabilitarTutor(int id)
+    {
+        var tutor = _context.User.FirstOrDefault(tutor => tutor.Id == id);
+
+        if (tutor == null) return NotFound();
+
+        var tutorParaAtualizar = _mapper.Map<UpdateTutorDto>(tutor);
+        tutorParaAtualizar.Active = true;
+
+        _mapper.Map(tutorParaAtualizar, tutor);
+        _context.SaveChanges();
+        return NoContent();
+
     }
 
     /// <summary>
@@ -88,7 +150,7 @@ public class TutoresController : ControllerBase
     [HttpPut("{id}")]
     public IActionResult AtualizarTutor(int id, [FromBody] UpdateTutorDto tutorDto)
     {
-        var tutor = _context.Tutores.FirstOrDefault(tutor => tutor.Id == id);
+        var tutor = _context.User.FirstOrDefault(tutor => tutor.Id == id);
 
         if (tutor == null) return NotFound();
 
@@ -107,7 +169,7 @@ public class TutoresController : ControllerBase
     [HttpPatch("{id}")]
     public IActionResult AtualizarTutorParial(int id, JsonPatchDocument<UpdateTutorDto> patch)
     {
-        var tutor = _context.Tutores.FirstOrDefault(tutor => tutor.Id == id);
+        var tutor = _context.User.FirstOrDefault(tutor => tutor.Id == id);
 
         if (tutor == null) return NotFound();
 

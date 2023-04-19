@@ -1,0 +1,24 @@
+﻿using AdoPet.Models;
+using AutoMapper;
+using Data.DTOs.Abrigos;
+using Data.DTOs.Pets;
+using Models.Models;
+
+namespace AdoPet.Profiles;
+
+/// <summary>
+/// Classe de profile para Abrigo
+/// </summary>
+public class AdocaoProfile : Profile
+{
+    /// <summary>
+    /// Metodo construtor para mapeamento entre os DTOs e o cadastro de Abrigo
+    /// </summary>
+    public AdocaoProfile()
+    {
+        CreateMap<CreateAdocaoDto, Adocao>();
+        CreateMap<UpdateAdocaoDto, Adocao>();
+        CreateMap<Adocao, UpdateAdocaoDto>();
+        CreateMap<Adocao, ReadAdocaoDto>();
+    }
+}

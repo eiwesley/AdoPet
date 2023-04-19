@@ -1,6 +1,7 @@
 ﻿using Models.Models;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.EntityFrameworkCore;
+using AdoPet.Models;
 
 namespace Models.Data;
 
@@ -21,7 +22,7 @@ public class AdoPetContext : DbContext
     /// <summary>
     /// Conecta ao banco de dados Tutores
     /// </summary>
-    public DbSet<Tutores> Tutores { get; set; }
+    public DbSet<User> User { get; set; }
 
     /// <summary>
     /// Função override
@@ -35,7 +36,17 @@ public class AdoPetContext : DbContext
     /// <summary>
     /// Conecta ao banco de dados Pets
     /// </summary>
-    public DbSet<Pets> Pets { get; set; }
+    public DbSet<Pet> Pet { get; set; }
+
+    /// <summary>
+    /// Conecta ao banco de dados Abrigo
+    /// </summary>
+    public DbSet<Abrigo> Abrigo { get; set; }
+
+    /// <summary>
+    /// Conecta ao banco de dados Adocao
+    /// </summary>
+    public DbSet<Adocao> Adocao { get; set; }
 
 }
 

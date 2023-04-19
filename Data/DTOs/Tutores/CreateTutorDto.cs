@@ -1,19 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using AdoPet.Models;
+using Models.Models;
+using System.ComponentModel.DataAnnotations;
 
-namespace Models.Models;
+namespace Data.DTOs.Tutor;
 
 /// <summary>
-/// Classe mãe, responsavel pelo mapeamento dos campos, para inserção ou consulta ao banco.
+/// Classe Responsabel pela criação do cadastro
 /// </summary>
-public class Tutores
+public class CreateTutorDto
 {
-    /// <summary>
-    /// ID do tutor cadastrado no banco
-    /// </summary>
-    [Key]
-    [Required]
-    public int Id { get; set; }
-
     /// <summary>
     /// Nome do Tutor
     /// </summary>
@@ -35,10 +30,10 @@ public class Tutores
     [MaxLength(20, ErrorMessage = "O tamanho da senha nao pode exceder 20 caracteres")]
     public string? Password { get; set; }
 
-    /// <summary>
-    /// Nome do Pet do tutoe
-    /// </summary>
-    public string? PetName { get; set; }
+    ///// <summary>
+    ///// Lista de Pets do tutor
+    ///// </summary>
+    //public List<Pet>? Pets { get; set; }
 
     /// <summary>
     /// Imagem do tutor
@@ -56,4 +51,9 @@ public class Tutores
     [Required(ErrorMessage = "O tipo de perfil para cadastro é obrigatorio!")]
     [MaxLength(20, ErrorMessage = "O tamanho do perfil nao pode exceder 20 caracteres")]
     public string? Profile { get; set; }
+
+    ///// <summary>
+    ///// Lista de adoções do tutor
+    ///// </summary>
+    //public List<Adocao>? Adocoes { get; set; }
 }

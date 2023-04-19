@@ -14,9 +14,9 @@ public class TutorProfile : Profile
     /// </summary>
     public TutorProfile()
     {
-        CreateMap<CreateTutorDto, Tutores>();
-        CreateMap<UpdateTutorDto, Tutores>();
-        CreateMap<Tutores, UpdateTutorDto>();
-        CreateMap<Tutores, ReadTutorDto>();
+        CreateMap<CreateTutorDto, User>();
+        CreateMap<UpdateTutorDto, User>();
+        CreateMap<User, UpdateTutorDto>();
+        CreateMap<User, ReadTutorDto>();
     }
 }

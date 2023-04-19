@@ -1,11 +1,20 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using AdoPet.Models;
+using System.ComponentModel.DataAnnotations;
 
-namespace Data.DTOs.Pet;
+namespace Models.Models;
+
 /// <summary>
-/// Classe Responsabel pela atualização do cadastro do pet
+/// Classe mãe, responsavel pelo mapeamento dos campos, para inserção ou consulta ao banco.
 /// </summary>
-public class UpdatePetDto
+public class Pet
 {
+    /// <summary>
+    /// ID do pet cadastrado no banco
+    /// </summary>
+    [Key]
+    [Required]
+    public int Id { get; set; }
+
     /// <summary>
     /// Nome do Pet
     /// </summary>
@@ -83,13 +92,23 @@ public class UpdatePetDto
     public string? Status { get; set; }
 
     /// <summary>
-    /// Responsavel pelo pet
+    /// Objeto Adocao
     /// </summary>
-    public string? Owner { get; set; }
+    public Adocao? Adocao { get; set; }
 
     /// <summary>
-    /// Data de Adoção
+    /// UserID do Tutor do Pet
     /// </summary>
-    public DateTime? AdoptedDate { get; set; }
-}
+    public int UserId { get; set; }
 
+    /// <summary>
+    /// ID do Abrigo
+    /// </summary>
+    public int AbrigoId { get; set; }
+
+    /// <summary>
+    /// Abrigo aonde o Pet esta habitando
+    /// </summary>
+    public virtual Abrigo? Abrigo { get; set; }
+
+}
