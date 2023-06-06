@@ -66,24 +66,24 @@ Os times de frontend e UI já estão trabalhando no layout e nas telas. Para o b
 
 <br>
 
-## :hammer_and_wrench: Abrir e rodar o projeto
+<!---## :hammer_and_wrench: Abrir e rodar o projeto-->
 
-Clone o projeto para seu repositório.
-<br>
-Instale as dependências através do comando:
+<!---Clone o projeto para seu repositório.-->
+<!---<br>-->
+<!---Instale as dependências através do comando:-->
 
-`dotnet restore`
+<!---`dotnet restore`-->
 
-Configure sua connection string pelo user-secrets com o comando:
+<!---Configure sua connection string pelo user-secrets com o comando:-->
 
-`dotnet user-secrets "DbConnection" "SUA_STRING_AQUI"`
+<!---`dotnet user-secrets "DbConnection" "SUA_STRING_AQUI"`-->
 
-Criar a base de dados:
+<!---Criar a base de dados:-->
 
-`Update-Database`
+<!---`Update-Database`-->
 
-O adminstrador deve ser criado direto no banco de dados e deve ser atribuído o papel amdmin para o mesmo.
+<!---O adminstrador deve ser criado direto no banco de dados e deve ser atribuído o papel amdmin para o mesmo.-->
 
-<!-- Crie um arquivo `.env` na raiz do projeto PlayListAPI seguindo o modelo do arquivo `.env.example` -->
-<br><br>
+<!---<!-- Crie um arquivo `.env` na raiz do projeto PlayListAPI seguindo o modelo do arquivo `.env.example` -->
+<!---<br><br>-->
 
